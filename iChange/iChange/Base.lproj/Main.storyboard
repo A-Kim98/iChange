@@ -130,6 +130,9 @@
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="79c-IF-M13"/>
                                                                     </constraints>
                                                                     <state key="normal" title="Add Total"/>
+                                                                    <connections>
+                                                                        <action selector="addTotalButtonTapped:" destination="jDd-z3-KYa" eventType="touchUpInside" id="Htb-pZ-NRs"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -166,6 +169,9 @@
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="XxX-Lg-u4H"/>
                                                                     </constraints>
                                                                     <state key="normal" title="Add Paid"/>
+                                                                    <connections>
+                                                                        <action selector="addPaidButtonTapped:" destination="jDd-z3-KYa" eventType="touchUpInside" id="QIy-kM-SAO"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>

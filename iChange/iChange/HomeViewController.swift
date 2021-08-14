@@ -7,99 +7,20 @@
 
 import UIKit
 
-
-// MARK:- Custom tableViewCell
-
-class totalAmountCell: UITableViewCell {
-    
-    @IBOutlet weak var chargeDueLabel: UILabel!
-    @IBOutlet weak var totalAmountLabel: UILabel!
-    
-    
-    override var frame: CGRect {
-        get {
-            return super.frame
-        }
-        set (newFrame) {
-            var frame = newFrame
-            let newWidth = frame.width * 0.90
-            let space = (frame.width - newWidth) / 2
-            frame.size.width = newWidth
-            frame.origin.x += space
-
-            super.frame = frame
-
-        }
-    }
-
-    
-
-    
-}
-
-class addTotalCell: UITableViewCell {
-
-    @IBOutlet weak var addTotalLabel: UILabel!
-    @IBOutlet weak var addTotalButton: UIButton!
-    
-    
-    override var frame: CGRect {
-        get {
-            return super.frame
-        }
-        set (newFrame) {
-            var frame = newFrame
-            let newWidth = frame.width * 0.90
-            let space = (frame.width - newWidth) / 2
-            frame.size.width = newWidth
-            frame.origin.x += space
-
-            super.frame = frame
-
-        }
-    }
-}
-
-class addPaidCell: UITableViewCell {
-
-    @IBOutlet weak var addPaidLabel: UILabel!
-    @IBOutlet weak var addPaidButton: UIButton!
-    
-    override var frame: CGRect {
-        get {
-            return super.frame
-        }
-        set (newFrame) {
-            var frame = newFrame
-            let newWidth = frame.width * 0.90 // get 80% width here
-            let space = (frame.width - newWidth) / 2
-            frame.size.width = newWidth
-            frame.origin.x += space
-
-            super.frame = frame
-
-        }
-    }
-    
-}
-
-
-
 class HomeViewController: UIViewController {
     
     // MARK:- IBOutlet Properties
     
     @IBOutlet weak var totalTableView: UITableView!
-
     @IBOutlet weak var plusButton: UIButton!
-    
-    
-    
+
     
     // MARK:- Properties
     
-    
+    var totalAmount: Int?
+    var piadAmount: Int? = 0
    
+    
     // MARK:- View Controller Life Cycle
     override func viewDidLoad() {
         
@@ -108,21 +29,109 @@ class HomeViewController: UIViewController {
         totalTableView.delegate = self
         totalTableView.dataSource = self
 
-        
         // This will remove extra separators from tableview
         self.totalTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         plusButton.setBordersSettingsPlusButton()
         
-
-
     }
     
 
     // MARK:- IBAction Methods
     
+    @IBAction func addTotalButtonTapped(_ sender: Any) {
+        
+        // Create the alert controller
+        let nameDialog = UIAlertController(title: "Purchase Total", message: "Enter the total amount due.", preferredStyle: .alert)
+        
+        // Add the text fields.
+        nameDialog.addTextField { (textField) in
+            
+            textField.placeholder = "Total"
+            
+        }
+        
+        
+        let doneAction = UIAlertAction(title: "Done", style: .default) { (alert) in
+            
+            guard let totalAmountInput = nameDialog.textFields?.first?.text
+            else {
+                self.showError(string:"An unknown error occurred. please try again");
+                return
+                
+            }
+            
+            
+            print(totalAmountInput)
+            
+            self.totalAmount = Int(totalAmountInput)
+            
+            print(self.totalAmount)
+            
+            self.totalTableView.reloadData()
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        nameDialog.addAction(doneAction)
+        nameDialog.addAction(cancelAction)
+        
+        present(nameDialog, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func addPaidButtonTapped(_ sender: Any) {
+        // Create the alert controller
+        let nameDialog = UIAlertController(title: "Amount Paid", message: "Enter how much your customer paid", preferredStyle: .alert)
+        
+        // Add the text fields.
+        nameDialog.addTextField { (textField) in
+            
+            textField.placeholder = "Paid"
+            
+        }
+        
+        
+        let doneAction = UIAlertAction(title: "Done", style: .default) { (alert) in
+            
+            guard let paidAmountInput = nameDialog.textFields?.first?.text
+            else {
+                self.showError(string:"An unknown error occurred. please try again");
+                return
+                
+            }
+            
+            
+            print(paidAmountInput)
+            
+            self.piadAmount = Int(paidAmountInput)
+            
+            print(self.piadAmount)
+            
+            self.totalTableView.reloadData()
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        nameDialog.addAction(doneAction)
+        nameDialog.addAction(cancelAction)
+        
+        present(nameDialog, animated: true, completion: nil)
+    }
     
     // MARK:- Custom Methods
+    
+    /// Display appropriate error messages
+    func showError(string: String) {
+        // create the alert
+        let alert = UIAlertController(title: "Error", message: string, preferredStyle: UIAlertController.Style.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }
 
@@ -154,11 +163,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             let secondCell = tableView.dequeueReusableCell(withIdentifier: "addTotalCell", for: indexPath) as! addTotalCell
             
-            secondCell.addTotalLabel.text = "Start by adding total"
-            secondCell.addTotalButton.titleLabel?.text = "Add Total"
+            if totalAmount != 0 {
+                secondCell.addTotalLabel.text = "Total: \(totalAmount)"
+                secondCell.addTotalButton.setTitle("Edit Total", for: .normal)
+            }
+            
+            else {
+                secondCell.addTotalLabel.text = "Start by adding total"
+                secondCell.addTotalButton.setTitle("Add Total", for: .normal)
+            }
             
             secondCell.addTotalButton.setBordersSettings()
-            
             
             return secondCell
             
@@ -167,7 +182,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let thirdCell = tableView.dequeueReusableCell(withIdentifier: "addPaidCell", for: indexPath) as! addPaidCell
             
             thirdCell.addPaidLabel.text = "Then add amount paid"
-            thirdCell.addPaidButton.titleLabel?.text = "Add Paid"
+            thirdCell.addPaidButton.setTitle("Add Paid", for: .normal)
             thirdCell.addPaidButton.setBordersSettings()
             
             return thirdCell

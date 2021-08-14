@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		76A7D38F26C757E800BBA130 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A7D38E26C757E800BBA130 /* Model.swift */; };
+		76AF569126C8705200842B18 /* totalAmountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF569026C8705200842B18 /* totalAmountCell.swift */; };
+		76AF569326C8708300842B18 /* addTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF569226C8708300842B18 /* addTotalCell.swift */; };
+		76AF569526C8709700842B18 /* addPaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AF569426C8709700842B18 /* addPaidCell.swift */; };
 		76C84B0A26C5DB36008AE153 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C84B0926C5DB36008AE153 /* AppDelegate.swift */; };
 		76C84B0C26C5DB36008AE153 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C84B0B26C5DB36008AE153 /* SceneDelegate.swift */; };
 		76C84B0E26C5DB36008AE153 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C84B0D26C5DB36008AE153 /* HomeViewController.swift */; };
@@ -18,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		76A7D38E26C757E800BBA130 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		76AF569026C8705200842B18 /* totalAmountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = totalAmountCell.swift; sourceTree = "<group>"; };
+		76AF569226C8708300842B18 /* addTotalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addTotalCell.swift; sourceTree = "<group>"; };
+		76AF569426C8709700842B18 /* addPaidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPaidCell.swift; sourceTree = "<group>"; };
 		76C84B0626C5DB36008AE153 /* iChange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C84B0926C5DB36008AE153 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76C84B0B26C5DB36008AE153 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +45,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76AF568F26C8703C00842B18 /* Custome Table Cell */ = {
+			isa = PBXGroup;
+			children = (
+				76AF569026C8705200842B18 /* totalAmountCell.swift */,
+				76AF569226C8708300842B18 /* addTotalCell.swift */,
+				76AF569426C8709700842B18 /* addPaidCell.swift */,
+			);
+			name = "Custome Table Cell";
+			sourceTree = "<group>";
+		};
 		76C84AFD26C5DB36008AE153 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +76,7 @@
 			children = (
 				76A7D38E26C757E800BBA130 /* Model.swift */,
 				76C84B0926C5DB36008AE153 /* AppDelegate.swift */,
+				76AF568F26C8703C00842B18 /* Custome Table Cell */,
 				76C84B0B26C5DB36008AE153 /* SceneDelegate.swift */,
 				76C84B0D26C5DB36008AE153 /* HomeViewController.swift */,
 				76C84B0F26C5DB36008AE153 /* Main.storyboard */,
@@ -140,9 +157,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76AF569526C8709700842B18 /* addPaidCell.swift in Sources */,
+				76AF569126C8705200842B18 /* totalAmountCell.swift in Sources */,
 				76C84B0E26C5DB36008AE153 /* HomeViewController.swift in Sources */,
 				76C84B0A26C5DB36008AE153 /* AppDelegate.swift in Sources */,
 				76C84B0C26C5DB36008AE153 /* SceneDelegate.swift in Sources */,
+				76AF569326C8708300842B18 /* addTotalCell.swift in Sources */,
 				76A7D38F26C757E800BBA130 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
