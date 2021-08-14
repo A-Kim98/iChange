@@ -23,7 +23,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ns8-S4-Bv2" userLabel="totalView">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-vI-ayb" userLabel="first two top views">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-vI-ayb" userLabel="first two top views">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="377"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ieg-lP-3YH" userLabel="titleView">
@@ -35,10 +35,11 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVh-QJ-tXY" userLabel="plus Button">
-                                                        <rect key="frame" x="344" y="0.0" width="50" height="50"/>
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVh-QJ-tXY" userLabel="plus Button">
+                                                        <rect key="frame" x="364" y="10" width="30" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="KNa-IB-xgC"/>
+                                                            <constraint firstAttribute="width" constant="30" id="KNa-IB-xgC"/>
+                                                            <constraint firstAttribute="height" constant="30" id="Mai-IA-pV2"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="+">
@@ -53,22 +54,22 @@
                                                     </button>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="PVh-QJ-tXY" secondAttribute="bottom" constant="10" id="82Y-55-bR8"/>
                                                     <constraint firstItem="PVh-QJ-tXY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Aj9-gU-aVJ" secondAttribute="trailing" constant="8" symbolic="YES" id="LuC-48-GSQ"/>
                                                     <constraint firstAttribute="height" constant="50" id="MMB-Wq-6Sd"/>
                                                     <constraint firstAttribute="trailing" secondItem="PVh-QJ-tXY" secondAttribute="trailing" constant="20" id="NHL-1O-Viq"/>
-                                                    <constraint firstItem="PVh-QJ-tXY" firstAttribute="top" secondItem="ieg-lP-3YH" secondAttribute="top" id="eNq-a4-nh1"/>
                                                     <constraint firstItem="Aj9-gU-aVJ" firstAttribute="top" secondItem="ieg-lP-3YH" secondAttribute="top" constant="5" id="iUP-Ad-Mby"/>
                                                     <constraint firstAttribute="bottom" secondItem="Aj9-gU-aVJ" secondAttribute="bottom" id="j5A-wJ-Wkd"/>
-                                                    <constraint firstItem="PVh-QJ-tXY" firstAttribute="centerY" secondItem="ieg-lP-3YH" secondAttribute="centerY" id="o1x-oI-0WU"/>
+                                                    <constraint firstItem="PVh-QJ-tXY" firstAttribute="top" secondItem="ieg-lP-3YH" secondAttribute="top" constant="10" id="laz-Hp-1Bs"/>
                                                     <constraint firstItem="Aj9-gU-aVJ" firstAttribute="leading" secondItem="ieg-lP-3YH" secondAttribute="leading" constant="20" id="og8-YC-QPq"/>
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ri3-HO-zTm">
-                                                <rect key="frame" x="0.0" y="65" width="414" height="312"/>
+                                                <rect key="frame" x="0.0" y="80" width="414" height="297"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="totalAmountCell" id="8gW-en-QYf" customClass="totalAmountCell" customModule="iChange" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="totalAmountCell" id="8gW-en-QYf" customClass="totalAmountCell" customModule="iChange" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="24.5" width="414" height="52.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8gW-en-QYf" id="w5k-IF-tUZ">
@@ -99,35 +100,44 @@
                                                                 <constraint firstItem="sWE-NK-Nad" firstAttribute="leading" secondItem="w5k-IF-tUZ" secondAttribute="leadingMargin" constant="30" id="dyY-Jv-Zot"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="chargeDueLabel" destination="sWE-NK-Nad" id="ygq-uc-bof"/>
                                                             <outlet property="totalAmountLabel" destination="ssV-bR-ToL" id="5fN-Qn-bhh"/>
                                                         </connections>
                                                     </tableViewCell>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addTotalCell" id="5UD-lG-4Xg" customClass="addTotalCell" customModule="iChange" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="77" width="414" height="43"/>
+                                                        <rect key="frame" x="0.0" y="77" width="414" height="50.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5UD-lG-4Xg" id="EMn-Z5-5UW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start by adding total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aD-mY-2Pn">
-                                                                    <rect key="frame" x="50" y="11" width="155" height="21"/>
+                                                                    <rect key="frame" x="50" y="11" width="155" height="28.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esq-9j-59C">
-                                                                    <rect key="frame" x="299" y="0.0" width="65" height="43"/>
+                                                                    <rect key="frame" x="304" y="10" width="80" height="30.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="79c-IF-M13"/>
+                                                                    </constraints>
                                                                     <state key="normal" title="Add Total"/>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="9aD-mY-2Pn" firstAttribute="top" secondItem="EMn-Z5-5UW" secondAttribute="topMargin" id="CKR-Cl-1fE"/>
                                                                 <constraint firstAttribute="bottomMargin" secondItem="9aD-mY-2Pn" secondAttribute="bottom" id="HYv-2c-ldE"/>
-                                                                <constraint firstAttribute="trailing" secondItem="esq-9j-59C" secondAttribute="trailing" constant="50" id="Nfa-L0-lqI"/>
-                                                                <constraint firstAttribute="bottom" secondItem="esq-9j-59C" secondAttribute="bottom" id="efy-FM-YEr"/>
-                                                                <constraint firstItem="esq-9j-59C" firstAttribute="top" secondItem="EMn-Z5-5UW" secondAttribute="top" id="x8X-62-J94"/>
+                                                                <constraint firstAttribute="trailing" secondItem="esq-9j-59C" secondAttribute="trailing" constant="30" id="Nfa-L0-lqI"/>
+                                                                <constraint firstAttribute="bottom" secondItem="esq-9j-59C" secondAttribute="bottom" constant="10" id="efy-FM-YEr"/>
+                                                                <constraint firstItem="esq-9j-59C" firstAttribute="top" secondItem="EMn-Z5-5UW" secondAttribute="top" constant="10" id="x8X-62-J94"/>
                                                                 <constraint firstItem="esq-9j-59C" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9aD-mY-2Pn" secondAttribute="trailing" constant="8" symbolic="YES" id="xje-IO-Cd2"/>
                                                                 <constraint firstItem="9aD-mY-2Pn" firstAttribute="leading" secondItem="EMn-Z5-5UW" secondAttribute="leadingMargin" constant="30" id="zhA-fb-IdB"/>
                                                             </constraints>
@@ -138,27 +148,30 @@
                                                         </connections>
                                                     </tableViewCell>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addPaidCell" id="5ls-dK-GLM" customClass="addPaidCell" customModule="iChange" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="120" width="414" height="43"/>
+                                                        <rect key="frame" x="0.0" y="127.5" width="414" height="50.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5ls-dK-GLM" id="CJ6-lM-QDC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Then add amount paid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uoq-eb-v14">
-                                                                    <rect key="frame" x="50" y="11" width="171.5" height="21"/>
+                                                                    <rect key="frame" x="50" y="11" width="171.5" height="28.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tN-FS-e25">
-                                                                    <rect key="frame" x="303" y="0.0" width="61" height="43"/>
+                                                                    <rect key="frame" x="304" y="10" width="80" height="30.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="XxX-Lg-u4H"/>
+                                                                    </constraints>
                                                                     <state key="normal" title="Add Paid"/>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="5tN-FS-e25" firstAttribute="top" secondItem="CJ6-lM-QDC" secondAttribute="top" id="73u-Br-3Rt"/>
-                                                                <constraint firstAttribute="bottom" secondItem="5tN-FS-e25" secondAttribute="bottom" id="G3h-2k-Z4y"/>
-                                                                <constraint firstAttribute="trailing" secondItem="5tN-FS-e25" secondAttribute="trailing" constant="50" id="I4u-TM-HGo"/>
+                                                                <constraint firstItem="5tN-FS-e25" firstAttribute="top" secondItem="CJ6-lM-QDC" secondAttribute="top" constant="10" id="73u-Br-3Rt"/>
+                                                                <constraint firstAttribute="bottom" secondItem="5tN-FS-e25" secondAttribute="bottom" constant="10" id="G3h-2k-Z4y"/>
+                                                                <constraint firstAttribute="trailing" secondItem="5tN-FS-e25" secondAttribute="trailing" constant="30" id="I4u-TM-HGo"/>
                                                                 <constraint firstItem="5tN-FS-e25" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Uoq-eb-v14" secondAttribute="trailing" constant="8" symbolic="YES" id="TdC-Lq-ulD"/>
                                                                 <constraint firstItem="Uoq-eb-v14" firstAttribute="leading" secondItem="CJ6-lM-QDC" secondAttribute="leadingMargin" constant="30" id="gQB-nb-Nfa"/>
                                                                 <constraint firstItem="Uoq-eb-v14" firstAttribute="top" secondItem="CJ6-lM-QDC" secondAttribute="topMargin" id="ot3-Nd-9NG"/>
@@ -190,7 +203,7 @@
                                                 <rect key="frame" x="15" y="37.5" width="384" height="339.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aW7-Ir-KtC" userLabel="Bills View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="184.5" height="175.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="184.5" height="190.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bills" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0Q-fV-Dtj">
                                                                 <rect key="frame" x="10" y="10" width="174.5" height="18"/>
@@ -289,14 +302,20 @@
                                                             <constraint firstItem="i0Q-fV-Dtj" firstAttribute="leading" secondItem="aW7-Ir-KtC" secondAttribute="leading" constant="10" id="6z6-Ok-Kds"/>
                                                             <constraint firstItem="yg7-Mn-hyj" firstAttribute="top" secondItem="i0Q-fV-Dtj" secondAttribute="bottom" constant="15" id="LP0-7F-dSr"/>
                                                             <constraint firstAttribute="trailing" secondItem="i0Q-fV-Dtj" secondAttribute="trailing" id="TnU-Jb-x2Z"/>
-                                                            <constraint firstAttribute="bottom" secondItem="yg7-Mn-hyj" secondAttribute="bottom" id="VWV-2T-cfS"/>
+                                                            <constraint firstAttribute="bottom" secondItem="yg7-Mn-hyj" secondAttribute="bottom" constant="15" id="VWV-2T-cfS"/>
                                                             <constraint firstItem="yg7-Mn-hyj" firstAttribute="leading" secondItem="aW7-Ir-KtC" secondAttribute="leading" constant="10" id="g5R-kY-u5w"/>
                                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="yg7-Mn-hyj" secondAttribute="trailing" constant="50" id="hhk-t7-Ur3"/>
                                                             <constraint firstItem="i0Q-fV-Dtj" firstAttribute="top" secondItem="aW7-Ir-KtC" secondAttribute="top" constant="10" id="tqc-bf-LnJ"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcF-B5-pXv" userLabel="Coins View">
-                                                        <rect key="frame" x="199.5" y="0.0" width="184.5" height="205"/>
+                                                        <rect key="frame" x="199.5" y="0.0" width="184.5" height="220"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agl-aj-LkJ">
                                                                 <rect key="frame" x="10" y="10" width="174.5" height="18"/>
@@ -407,13 +426,19 @@
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="BcL-26-pVt" firstAttribute="leading" secondItem="qcF-B5-pXv" secondAttribute="leading" constant="10" id="9jd-zd-LGQ"/>
-                                                            <constraint firstAttribute="bottom" secondItem="BcL-26-pVt" secondAttribute="bottom" id="B7e-DX-h75"/>
+                                                            <constraint firstAttribute="bottom" secondItem="BcL-26-pVt" secondAttribute="bottom" constant="15" id="B7e-DX-h75"/>
                                                             <constraint firstAttribute="trailing" secondItem="agl-aj-LkJ" secondAttribute="trailing" id="Dbc-D2-xOl"/>
                                                             <constraint firstItem="BcL-26-pVt" firstAttribute="top" secondItem="agl-aj-LkJ" secondAttribute="bottom" constant="15" id="Kac-Nk-m3s"/>
                                                             <constraint firstItem="agl-aj-LkJ" firstAttribute="top" secondItem="qcF-B5-pXv" secondAttribute="top" constant="10" id="L05-sX-TeU"/>
                                                             <constraint firstItem="agl-aj-LkJ" firstAttribute="leading" secondItem="qcF-B5-pXv" secondAttribute="leading" constant="10" id="RZK-LW-ICJ"/>
                                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="BcL-26-pVt" secondAttribute="trailing" constant="50" id="hTP-MW-CYc"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                             </stackView>
@@ -447,6 +472,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house" id="3Yl-Bu-P2y"/>
                     <connections>
+                        <outlet property="plusButton" destination="PVh-QJ-tXY" id="GOS-MN-SdZ"/>
                         <outlet property="totalTableView" destination="ri3-HO-zTm" id="K8s-hr-JcB"/>
                     </connections>
                 </viewController>

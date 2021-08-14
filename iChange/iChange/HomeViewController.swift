@@ -15,6 +15,26 @@ class totalAmountCell: UITableViewCell {
     @IBOutlet weak var chargeDueLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     
+    
+    override var frame: CGRect {
+        get {
+            return super.frame
+        }
+        set (newFrame) {
+            var frame = newFrame
+            let newWidth = frame.width * 0.90
+            let space = (frame.width - newWidth) / 2
+            frame.size.width = newWidth
+            frame.origin.x += space
+
+            super.frame = frame
+
+        }
+    }
+
+    
+
+    
 }
 
 class addTotalCell: UITableViewCell {
@@ -22,12 +42,44 @@ class addTotalCell: UITableViewCell {
     @IBOutlet weak var addTotalLabel: UILabel!
     @IBOutlet weak var addTotalButton: UIButton!
     
+    
+    override var frame: CGRect {
+        get {
+            return super.frame
+        }
+        set (newFrame) {
+            var frame = newFrame
+            let newWidth = frame.width * 0.90
+            let space = (frame.width - newWidth) / 2
+            frame.size.width = newWidth
+            frame.origin.x += space
+
+            super.frame = frame
+
+        }
+    }
 }
 
 class addPaidCell: UITableViewCell {
 
     @IBOutlet weak var addPaidLabel: UILabel!
     @IBOutlet weak var addPaidButton: UIButton!
+    
+    override var frame: CGRect {
+        get {
+            return super.frame
+        }
+        set (newFrame) {
+            var frame = newFrame
+            let newWidth = frame.width * 0.90 // get 80% width here
+            let space = (frame.width - newWidth) / 2
+            frame.size.width = newWidth
+            frame.origin.x += space
+
+            super.frame = frame
+
+        }
+    }
     
 }
 
@@ -38,9 +90,9 @@ class HomeViewController: UIViewController {
     // MARK:- IBOutlet Properties
     
     @IBOutlet weak var totalTableView: UITableView!
-    
-    
 
+    @IBOutlet weak var plusButton: UIButton!
+    
     
     
     
@@ -59,6 +111,10 @@ class HomeViewController: UIViewController {
         
         // This will remove extra separators from tableview
         self.totalTableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        plusButton.setBordersSettingsPlusButton()
+        
+
 
     }
     
@@ -101,6 +157,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             secondCell.addTotalLabel.text = "Start by adding total"
             secondCell.addTotalButton.titleLabel?.text = "Add Total"
             
+            secondCell.addTotalButton.setBordersSettings()
+            
+            
             return secondCell
             
         } else {
@@ -109,6 +168,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             thirdCell.addPaidLabel.text = "Then add amount paid"
             thirdCell.addPaidButton.titleLabel?.text = "Add Paid"
+            thirdCell.addPaidButton.setBordersSettings()
             
             return thirdCell
             
@@ -121,5 +181,29 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         print("you tapped me!")
     }
     
-
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
 }
+
+extension UIButton {
+    func setBordersSettings() {
+        self.layer.borderWidth = 1.0
+        self.layer.cornerRadius = 5.0
+        self.layer.borderColor = UIColor.systemBlue.cgColor
+        self.setTitleColor(UIColor.systemBlue, for: .normal)
+        self.layer.masksToBounds = true
+    }
+    
+    func setBordersSettingsPlusButton() {
+        self.layer.backgroundColor = UIColor.clear.cgColor
+        self.layer.cornerRadius = 0.5 * self.layer.bounds.size.width
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.systemBlue.cgColor
+    }
+}
+
+
+
