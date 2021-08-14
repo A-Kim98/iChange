@@ -56,6 +56,9 @@ class HomeViewController: UIViewController {
         totalTableView.delegate = self
         totalTableView.dataSource = self
 
+        
+        // This will remove extra separators from tableview
+        self.totalTableView.tableFooterView = UIView(frame: CGRect.zero)
 
     }
     
