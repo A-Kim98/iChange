@@ -17,8 +17,8 @@ class HomeViewController: UIViewController {
     
     // MARK:- Properties
     
-    var totalAmount: Int?
-    var piadAmount: Int? = 0
+    var totalAmount: Float = 0.0
+    var paidAmount:  Float = 0.0
    
     
     // MARK:- View Controller Life Cycle
@@ -33,7 +33,6 @@ class HomeViewController: UIViewController {
         self.totalTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         plusButton.setBordersSettingsPlusButton()
-        
     }
     
 
@@ -60,14 +59,9 @@ class HomeViewController: UIViewController {
                 return
                 
             }
-            
-            
-            print(totalAmountInput)
-            
-            self.totalAmount = Int(totalAmountInput)
-            
-            print(self.totalAmount)
-            
+        
+            self.totalAmount = Float(totalAmountInput)!
+                                    
             self.totalTableView.reloadData()
             
         }
@@ -81,8 +75,9 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func addPaidButtonTapped(_ sender: Any) {
+        
         // Create the alert controller
-        let nameDialog = UIAlertController(title: "Amount Paid", message: "Enter how much your customer paid", preferredStyle: .alert)
+        let nameDialog = UIAlertController(title: "Amount Paid", message: "Enter how much your customer paid.", preferredStyle: .alert)
         
         // Add the text fields.
         nameDialog.addTextField { (textField) in
@@ -90,7 +85,6 @@ class HomeViewController: UIViewController {
             textField.placeholder = "Paid"
             
         }
-        
         
         let doneAction = UIAlertAction(title: "Done", style: .default) { (alert) in
             
@@ -101,15 +95,10 @@ class HomeViewController: UIViewController {
                 
             }
             
-            
-            print(paidAmountInput)
-            
-            self.piadAmount = Int(paidAmountInput)
-            
-            print(self.piadAmount)
-            
+            self.paidAmount = Float(paidAmountInput)!
+                                    
             self.totalTableView.reloadData()
-            
+                    
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -154,7 +143,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let firstCell = tableView.dequeueReusableCell(withIdentifier: "totalAmountCell", for: indexPath) as! totalAmountCell
             
             firstCell.chargeDueLabel.text = "Charge Due"
-            firstCell.totalAmountLabel.text = "$0.00"
+            
+        
+            if totalAmount != 0.0 && paidAmount != 0.0 {
+                firstCell.totalAmountLabel.text = "$\(String(format:"%.2f", (paidAmount - totalAmount)))"
+            }
+            else {
+                firstCell.totalAmountLabel.text = "$0.00"
+            }
             
             return firstCell
             
@@ -163,7 +159,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             let secondCell = tableView.dequeueReusableCell(withIdentifier: "addTotalCell", for: indexPath) as! addTotalCell
             
-            if totalAmount != 0 {
+            if totalAmount != 0.0 {
                 secondCell.addTotalLabel.text = "Total: \(totalAmount)"
                 secondCell.addTotalButton.setTitle("Edit Total", for: .normal)
             }
@@ -181,21 +177,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             let thirdCell = tableView.dequeueReusableCell(withIdentifier: "addPaidCell", for: indexPath) as! addPaidCell
             
-            thirdCell.addPaidLabel.text = "Then add amount paid"
-            thirdCell.addPaidButton.setTitle("Add Paid", for: .normal)
+            if paidAmount != 0.0 {
+                thirdCell.addPaidLabel.text = "Paid: \(paidAmount)"
+                thirdCell.addPaidButton.setTitle("Edit Paid", for: .normal)
+            }
+            
+            else {
+                thirdCell.addPaidLabel.text = "Then add amount paid"
+                thirdCell.addPaidButton.setTitle("Add Paid", for: .normal)
+            }
+
             thirdCell.addPaidButton.setBordersSettings()
             
             return thirdCell
-            
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
         
-        print("you tapped me!")
-    }
-    
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
