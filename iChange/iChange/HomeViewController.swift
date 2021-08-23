@@ -39,8 +39,8 @@ class HomeViewController: UIViewController {
     var totalAmount: Float = 0.0
     var paidAmount:  Float = 0.0
     let coins = [1, 5, 10, 25, 100, 200, 500, 1000, 2000, 5000, 10000]
+
    
-    
     // MARK:- View Controller Life Cycle
     override func viewDidLoad() {
         
@@ -69,7 +69,6 @@ class HomeViewController: UIViewController {
             textField.placeholder = "Total"
             
         }
-        
         
         let doneAction = UIAlertAction(title: "Done", style: .default) { (alert) in
             
@@ -116,9 +115,9 @@ class HomeViewController: UIViewController {
             }
             
             self.paidAmount = Float(paidAmountInput)!
-                                    
+            
             self.totalTableView.reloadData()
-                    
+            
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -167,13 +166,109 @@ class HomeViewController: UIViewController {
         return resultDict
     }
     
+
+    func updateBills(_ result: [Double: Int]) {
+        
+        for i in result {
+                        
+            if i.key == 5 {
+                fiveDollarBillCount.text = String(i.value)
+            }
+            
+            if i.key == 10 {
+                tenDollarBillCount.text = String(i.value)
+            }
+            
+            if i.key == 20 {
+                twentyDollarBillCount.text = String(i.value)
+            }
+            
+            if i.key == 50 {
+                fiftyDollarBillCount.text = String(i.value)
+            }
+            
+            if i.key == 100 {
+                HundredDollarBillCount.text = String(i.value)
+            }
+        }
+        
+    }
+    
+    func updateCoins(_ result: [Double: Int]) {
+        
+        for i in result {
+            
+            if i.key == 0.01 {
+                pennyCount.text = String(i.value)
+            }
+            
+            if i.key == 0.05 {
+                nickelCount.text = String(i.value)
+            }
+            
+            if i.key == 0.10 {
+                dimeCount.text = String(i.value)
+            }
+            
+            if i.key == 0.25 {
+                quarterCount.text = String(i.value)
+            }
+            
+            if i.key == 1.00 {
+                loonieCount.text = String(i.value)
+            }
+            
+            
+            if i.key == 2.00 {
+                toonieCount.text = String(i.value)
+            }
+            
+        }
+    }
+    
+    func clearBills() {
+        
+        fiveDollarBillCount.text = "0"
+        tenDollarBillCount.text = "0"
+        twentyDollarBillCount.text = "0"
+        fiftyDollarBillCount.text = "0"
+        HundredDollarBillCount.text = "0"
+        
+    }
+    
+    func clearCoins() {
+        
+        pennyCount.text = "0"
+        nickelCount.text = "0"
+        dimeCount.text = "0"
+        quarterCount.text = "0"
+        loonieCount.text = "0"
+        toonieCount.text = "0"
+        
+    }
+    
+    /// Display results on the ChangeBreakdown Views
+    
+    func displayResult (_ amount: Float) {
+        
+        let chargeDue = (amount * 1000).rounded(.toNearestOrEven) / 1000
+        
+        let resultChange = leastCoins(coins, chargeDue)
+        
+        // update Bills
+        updateBills(resultChange)
+        
+        
+        // update Coins
+        updateCoins(resultChange)
+
+    }
 }
 
 
 
 // MARK:- UITableViewDataSource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
@@ -197,91 +292,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 firstCell.totalAmountLabel.text = "$\(String(format:"%.2f", chargeDue))"
                 
                 // clear changeBreakdown
+                clearBills()
+                clearCoins()
                 
-                fiveDollarBillCount.text = "0"
-                tenDollarBillCount.text = "0"
-                twentyDollarBillCount.text = "0"
-                fiftyDollarBillCount.text = "0"
-                HundredDollarBillCount.text = "0"
-                
-                
-                pennyCount.text = "0"
-                nickelCount.text = "0"
-                dimeCount.text = "0"
-                quarterCount.text = "0"
-                loonieCount.text = "0"
-                toonieCount.text = "0"
-                
-                
-                let resultChange = leastCoins(coins, (chargeDue * 1000).rounded(.toNearestOrEven) / 1000)
-                
-                print(chargeDue, resultChange)
-                
-                for i in resultChange {
-    
-                    if i.value > 0 {
-                        
-                        // Biils
-                        
-                        if i.key == 5 {
-                            fiveDollarBillCount.text = String(i.value)
-                        }
-                        
-                        if i.key == 10 {
-                            tenDollarBillCount.text = String(i.value)
-                        }
-                        
-                        if i.key == 20 {
-                            twentyDollarBillCount.text = String(i.value)
-                        }
-                        
-                        if i.key == 50 {
-                            fiftyDollarBillCount.text = String(i.value)
-                        }
-                        
-                        if i.key == 100 {
-                            HundredDollarBillCount.text = String(i.value)
-                        }
-                        
-                        
-                        // Coins
-                        
-                        if i.key == 0.01 {
-                            pennyCount.text = String(i.value)
-                        }
-                        
-                        if i.key == 0.05 {
-                            nickelCount.text = String(i.value)
-                        }
-                        
-                        if i.key == 0.10 {
-                            dimeCount.text = String(i.value)
-                        }
-                        
-                        if i.key == 0.25 {
-                            quarterCount.text = String(i.value)
-                        }
-                        
-                        if i.key == 1.00 {
-                            loonieCount.text = String(i.value)
-                        }
-                        
-                        
-                        if i.key == 2.00 {
-                            toonieCount.text = String(i.value)
-                        }
-                    }
-                }
+                // display Results on the Screen
+                displayResult(chargeDue)
                 
             }
             
             else {
                 firstCell.totalAmountLabel.text = "$0.00"
             }
-            
-            
-            
-            
             
             return firstCell
             
