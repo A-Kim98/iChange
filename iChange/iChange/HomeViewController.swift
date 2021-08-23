@@ -57,7 +57,6 @@ class HomeViewController: UIViewController {
         plusButton.setBordersSettingsPlusButton()
     }
     
-
     // MARK:- IBAction Methods
     
     @IBAction func addTotalButtonTapped(_ sender: Any) {
@@ -299,10 +298,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 firstCell.totalAmountLabel.text = "$\(String(format:"%.2f", chargeDue))"
                 
-                // clear changeBreakdown
-                clearBills()
-                clearCoins()
-                
                 // display Results on the Screen
                 displayResult(chargeDue)
                 
@@ -335,7 +330,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
         
             if totalAmount != 0.0 {
-                
                 secondCell.addTotalLabel.attributedText = attributedString
                 secondCell.addTotalButton.setTitle("Edit Total", for: .normal)
             }
@@ -343,6 +337,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             else {
                 secondCell.addTotalLabel.text = "Start by adding total"
                 secondCell.addTotalButton.setTitle("Add Total", for: .normal)
+                
+                // clear changeBreakdown
+                clearBills()
+                clearCoins()
             }
             
             secondCell.addTotalButton.setBordersSettings()
@@ -377,6 +375,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             else {
                 thirdCell.addPaidLabel.text = "Then add amount paid"
                 thirdCell.addPaidButton.setTitle("Add Paid", for: .normal)
+                
+                // clear changeBreakdown
+                clearBills()
+                clearCoins()
             }
             
             thirdCell.addPaidButton.setBordersSettings()
