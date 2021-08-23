@@ -26,16 +26,12 @@ func leastCoins(_ coins: [Int], _ amount: Int) -> [Double:Int] {
 }
 
 
-//let startTime2 = CACurrentMediaTime()
-//
-////print(leastCoins([1, 5, 10, 25, 100, 200, 500, 1000, 2000, 5000, 10000], 191))
-//
-//print(2.159999)
-//
-//let endTime2 = CACurrentMediaTime()
-//print("Total Runtime leastCoins: \(endTime2 - startTime2) s")
+let startTime2 = CACurrentMediaTime()
+
+print(leastCoins([1, 5, 10, 25, 100, 200, 500, 1000, 2000, 5000, 10000], 191))
 
 
+let endTime2 = CACurrentMediaTime()
+print("Total Runtime leastCoins: \(endTime2 - startTime2) s")
 
 
-let a: Int? = Int("fiveDollarBillCount")
