@@ -13,12 +13,32 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var totalTableView: UITableView!
     @IBOutlet weak var plusButton: UIButton!
-
+    
+    
+    // Bills
+    
+    @IBOutlet weak var fiveDollarBillCount: UILabel!
+    @IBOutlet weak var tenDollarBillCount: UILabel!
+    @IBOutlet weak var twentyDollarBillCount: UILabel!
+    @IBOutlet weak var fiftyDollarBillCount: UILabel!
+    @IBOutlet weak var HundredDollarBillCount: UILabel!
+    
+    
+    // Coins
+    
+    @IBOutlet weak var pennyCount: UILabel!
+    @IBOutlet weak var nickelCount: UILabel!
+    @IBOutlet weak var dimeCount: UILabel!
+    @IBOutlet weak var quarterCount: UILabel!
+    @IBOutlet weak var loonieCount: UILabel!
+    @IBOutlet weak var toonieCount: UILabel!
+    
     
     // MARK:- Properties
     
     var totalAmount: Float = 0.0
     var paidAmount:  Float = 0.0
+    let coins = [1, 5, 10, 25, 100, 200, 500, 1000, 2000, 5000, 10000]
    
     
     // MARK:- View Controller Life Cycle
@@ -122,6 +142,31 @@ class HomeViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    /// Find the minium coins to make a given change
+    func leastCoins(_ coins: [Int], _ amount: Float) -> [Double:Int] {
+        
+        var resultDict = [0.01:0, 0.05:0, 0.10:0, 0.25:0, 1.0:0, 2.0:0, 5:0, 10:0, 20:0, 50:0, 100:0]
+        var change = Int(amount * 100)
+        let coinArray = coins.filter{$0 < change}
+        
+        
+        while change > 0 {
+            for i in coinArray.reversed() {
+                
+                if (change / i > 0) {
+                    
+                    let coin = Double(i) / 100
+                    let count = change / i
+                    
+                    resultDict.updateValue(count, forKey: coin)
+                }
+                change = change % i
+            }
+        }
+        
+        return resultDict
+    }
+    
 }
 
 
@@ -146,11 +191,97 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
         
             if totalAmount != 0.0 && paidAmount != 0.0 {
-                firstCell.totalAmountLabel.text = "$\(String(format:"%.2f", (paidAmount - totalAmount)))"
+                
+                let chargeDue = (paidAmount - totalAmount)
+                
+                firstCell.totalAmountLabel.text = "$\(String(format:"%.2f", chargeDue))"
+                
+                // clear changeBreakdown
+                
+                fiveDollarBillCount.text = "0"
+                tenDollarBillCount.text = "0"
+                twentyDollarBillCount.text = "0"
+                fiftyDollarBillCount.text = "0"
+                HundredDollarBillCount.text = "0"
+                
+                
+                pennyCount.text = "0"
+                nickelCount.text = "0"
+                dimeCount.text = "0"
+                quarterCount.text = "0"
+                loonieCount.text = "0"
+                toonieCount.text = "0"
+                
+                
+                let resultChange = leastCoins(coins, (chargeDue * 1000).rounded(.toNearestOrEven) / 1000)
+                
+                print(chargeDue, resultChange)
+                
+                for i in resultChange {
+    
+                    if i.value > 0 {
+                        
+                        // Biils
+                        
+                        if i.key == 5 {
+                            fiveDollarBillCount.text = String(i.value)
+                        }
+                        
+                        if i.key == 10 {
+                            tenDollarBillCount.text = String(i.value)
+                        }
+                        
+                        if i.key == 20 {
+                            twentyDollarBillCount.text = String(i.value)
+                        }
+                        
+                        if i.key == 50 {
+                            fiftyDollarBillCount.text = String(i.value)
+                        }
+                        
+                        if i.key == 100 {
+                            HundredDollarBillCount.text = String(i.value)
+                        }
+                        
+                        
+                        // Coins
+                        
+                        if i.key == 0.01 {
+                            pennyCount.text = String(i.value)
+                        }
+                        
+                        if i.key == 0.05 {
+                            nickelCount.text = String(i.value)
+                        }
+                        
+                        if i.key == 0.10 {
+                            dimeCount.text = String(i.value)
+                        }
+                        
+                        if i.key == 0.25 {
+                            quarterCount.text = String(i.value)
+                        }
+                        
+                        if i.key == 1.00 {
+                            loonieCount.text = String(i.value)
+                        }
+                        
+                        
+                        if i.key == 2.00 {
+                            toonieCount.text = String(i.value)
+                        }
+                    }
+                }
+                
             }
+            
             else {
                 firstCell.totalAmountLabel.text = "$0.00"
             }
+            
+            
+            
+            
             
             return firstCell
             

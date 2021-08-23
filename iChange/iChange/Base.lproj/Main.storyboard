@@ -478,8 +478,19 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house" id="3Yl-Bu-P2y"/>
                     <connections>
+                        <outlet property="HundredDollarBillCount" destination="R6P-CN-129" id="9h4-zw-IM0"/>
+                        <outlet property="dimeCount" destination="QCG-3X-ef0" id="Wx1-b4-W8Z"/>
+                        <outlet property="fiftyDollarBillCount" destination="FGH-Ru-DoU" id="a39-Rt-yvh"/>
+                        <outlet property="fiveDollarBillCount" destination="9cK-uh-sDb" id="WgY-js-eS7"/>
+                        <outlet property="loonieCount" destination="v5J-Hu-S6V" id="B0z-QY-sqQ"/>
+                        <outlet property="nickelCount" destination="yUP-77-epM" id="s2A-Cd-Cwn"/>
+                        <outlet property="pennyCount" destination="jtI-7P-qiU" id="Rnm-5q-sdS"/>
                         <outlet property="plusButton" destination="PVh-QJ-tXY" id="GOS-MN-SdZ"/>
+                        <outlet property="quarterCount" destination="SV3-U5-rEh" id="Lrq-2p-H6C"/>
+                        <outlet property="tenDollarBillCount" destination="Wcd-8M-pAK" id="CJa-Pl-m2j"/>
+                        <outlet property="toonieCount" destination="2A4-At-2Kc" id="379-4Z-QeV"/>
                         <outlet property="totalTableView" destination="ri3-HO-zTm" id="K8s-hr-JcB"/>
+                        <outlet property="twentyDollarBillCount" destination="K4w-6J-WEU" id="vIi-pn-IsS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zKx-29-Ran" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
