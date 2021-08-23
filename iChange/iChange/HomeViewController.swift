@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var totalTableView: UITableView!
     @IBOutlet weak var plusButton: UIButton!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     // Bills
     

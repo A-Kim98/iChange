@@ -7,3 +7,8 @@
 
 import Foundation
 
+struct model {
+    
+    var history = [Float: Float]()
+
+}
