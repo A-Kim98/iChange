@@ -5,8 +5,9 @@ func leastCoins(_ coins: [Int], _ amount: Int) -> [Double:Int] {
     
     var resultDict = [0.01:0, 0.05:0, 0.10:0, 0.25:0, 1.0:0, 2.0:0, 5:0, 10:0, 20:0, 50:0, 100:0]
     var change = amount
-    let coinArray = coins.filter{$0 < amount}
+    let coinArray = coins.filter{$0 <= amount}
     
+    print(coinArray)
     
     while change > 0 {
         for i in coinArray.reversed() {
@@ -28,7 +29,7 @@ func leastCoins(_ coins: [Int], _ amount: Int) -> [Double:Int] {
 
 let startTime2 = CACurrentMediaTime()
 
-print(leastCoins([1, 5, 10, 25, 100, 200, 500, 1000, 2000, 5000, 10000], 191))
+print(leastCoins([1, 5, 10, 25, 100, 200, 500, 1000, 2000, 5000, 10000], 1000))
 
 
 let endTime2 = CACurrentMediaTime()

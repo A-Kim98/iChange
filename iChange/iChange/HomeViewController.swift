@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var totalTableView: UITableView!
     @IBOutlet weak var plusButton: UIButton!
     
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     // Bills
@@ -40,8 +41,8 @@ class HomeViewController: UIViewController {
     var totalAmount: Float = 0.0
     var paidAmount:  Float = 0.0
     let coins = [1, 5, 10, 25, 100, 200, 500, 1000, 2000, 5000, 10000]
+    
 
-   
     // MARK:- View Controller Life Cycle
     override func viewDidLoad() {
         
@@ -147,7 +148,7 @@ class HomeViewController: UIViewController {
         
         var resultDict = [0.01:0, 0.05:0, 0.10:0, 0.25:0, 1.0:0, 2.0:0, 5:0, 10:0, 20:0, 50:0, 100:0]
         var change = Int(amount * 100)
-        let coinArray = coins.filter{$0 < change}
+        let coinArray = coins.filter{$0 <= change}
         
         
         while change > 0 {
@@ -167,7 +168,8 @@ class HomeViewController: UIViewController {
         return resultDict
     }
     
-
+    /// update Bills View
+    
     func updateBills(_ result: [Double: Int]) {
         
         for i in result {
@@ -194,6 +196,8 @@ class HomeViewController: UIViewController {
         }
         
     }
+    
+    /// update Coins View
     
     func updateCoins(_ result: [Double: Int]) {
         
@@ -227,6 +231,8 @@ class HomeViewController: UIViewController {
         }
     }
     
+    /// reset Bills View
+    
     func clearBills() {
         
         fiveDollarBillCount.text = "0"
@@ -236,6 +242,8 @@ class HomeViewController: UIViewController {
         HundredDollarBillCount.text = "0"
         
     }
+    
+    /// reset Coins View
     
     func clearCoins() {
         
@@ -259,7 +267,6 @@ class HomeViewController: UIViewController {
         // update Bills
         updateBills(resultChange)
         
-        
         // update Coins
         updateCoins(resultChange)
 
@@ -280,7 +287,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-             //configure cell type 1
+
             let firstCell = tableView.dequeueReusableCell(withIdentifier: "totalAmountCell", for: indexPath) as! totalAmountCell
             
             firstCell.chargeDueLabel.text = "Charge Due"
@@ -308,12 +315,28 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return firstCell
             
         } else if indexPath.row == 1 {
-             //configure cell type 2
-            
+             
             let secondCell = tableView.dequeueReusableCell(withIdentifier: "addTotalCell", for: indexPath) as! addTotalCell
             
+            // Bold font
+            
+            var attributes = [NSAttributedString.Key: AnyObject]()
+            
+            attributes[.foregroundColor] = UIColor.black
+            attributes[.font] = UIFont.systemFont(ofSize: 16, weight: .bold)
+            
+            // Regular font
+            
+            let attributsNormal = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .regular)]
+
+            let attributedString = NSMutableAttributedString(string: "Total: ", attributes:attributsNormal)
+            let boldStringPart = NSMutableAttributedString(string: "$\(totalAmount)", attributes:attributes)
+            attributedString.append(boldStringPart)
+            
+        
             if totalAmount != 0.0 {
-                secondCell.addTotalLabel.text = "Total: \(totalAmount)"
+                
+                secondCell.addTotalLabel.attributedText = attributedString
                 secondCell.addTotalButton.setTitle("Edit Total", for: .normal)
             }
             
@@ -330,8 +353,24 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             let thirdCell = tableView.dequeueReusableCell(withIdentifier: "addPaidCell", for: indexPath) as! addPaidCell
             
+            // Bold font
+            
+            var attributes = [NSAttributedString.Key: AnyObject]()
+            
+            attributes[.foregroundColor] = UIColor.black
+            attributes[.font] = UIFont.systemFont(ofSize: 16, weight: .bold)
+            
+            // Regular font
+            
+            let attributsNormal = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .regular)]
+    
+            let attributedString = NSMutableAttributedString(string: "Paid: ", attributes:attributsNormal)
+            let boldStringPart = NSMutableAttributedString(string: "$\(paidAmount)", attributes:attributes)
+            attributedString.append(boldStringPart)
+            
+            
             if paidAmount != 0.0 {
-                thirdCell.addPaidLabel.text = "Paid: \(paidAmount)"
+                thirdCell.addPaidLabel.attributedText = attributedString
                 thirdCell.addPaidButton.setTitle("Edit Paid", for: .normal)
             }
             
@@ -339,7 +378,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 thirdCell.addPaidLabel.text = "Then add amount paid"
                 thirdCell.addPaidButton.setTitle("Add Paid", for: .normal)
             }
-
+            
             thirdCell.addPaidButton.setBordersSettings()
             
             return thirdCell
@@ -348,7 +387,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 80
     }
     
 }
@@ -356,7 +395,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension UIButton {
     func setBordersSettings() {
         self.layer.borderWidth = 1.0
-        self.layer.cornerRadius = 5.0
+        self.layer.cornerRadius = 10.0
         self.layer.borderColor = UIColor.systemBlue.cgColor
         self.setTitleColor(UIColor.systemBlue, for: .normal)
         self.layer.masksToBounds = true
@@ -369,6 +408,3 @@ extension UIButton {
         self.layer.borderColor = UIColor.systemBlue.cgColor
     }
 }
-
-
-
